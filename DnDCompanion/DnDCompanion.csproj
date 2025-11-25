@@ -63,13 +63,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="SpellsListPage.xaml">
+	  <MauiXaml Update="Views\Spells\SpellsListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="SpellsListPage.xaml.cs">
+	  <Compile Update="Views\Spells\SpellsListPage.xaml.cs">
 	    <DependentUpon>SpellsListPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>

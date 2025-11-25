@@ -23,8 +23,18 @@
 
         private async void OnGoToSpellsClicked(object? sender, EventArgs e)
         {
-            // Navigate to the Shell element route (absolute)
-            await Shell.Current.GoToAsync("///SpellsListPage");
+            // Register the route to the page path (idempotent)
+            try
+            {
+                Routing.RegisterRoute("Views/Spells/SpellsListPage", typeof(Views.Spells.SpellsListPage));
+            }
+            catch (ArgumentException)
+            {
+                // Route already registered - ignore
+            }
+
+            // Navigate using the registered route (absolute)
+            await Shell.Current.GoToAsync("Views/Spells/SpellsListPage");
         }
     }
 }

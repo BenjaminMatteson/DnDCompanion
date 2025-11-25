@@ -1,4 +1,4 @@
-namespace DnDCompanion
+namespace DnDCompanion.Views.Spells
 {
     public partial class SpellsListPage : ContentPage
     {
