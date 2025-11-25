@@ -16,12 +16,12 @@ namespace DnDCompanion.Views.Spells
                 // Fetch the spells list
                 var spells = await apiService.GetSpellsList();
                 // Display the spells in the ListView
-                SpellsListView.ItemsSource = spells;
+                SpellsCollectionView.ItemsSource = spells;
             }
             catch (Exception ex)
             {
                 // Handle any errors that occur during the API call
-                await DisplayAlert("Error", $"Failed to load spells: {ex.Message}", "OK");
+                await DisplayAlertAsync("Error", $"Failed to load spells: {ex.Message}", "OK");
             }
         }
 
@@ -29,6 +29,15 @@ namespace DnDCompanion.Views.Spells
         {
             // Navigate back using Shell
             await Shell.Current.GoToAsync("..");
+        }
+
+        private async void OnSpellSelected(object? sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.FirstOrDefault() is Classes.SpellListItem selectedSpell)
+            {
+                // Handle spell selection (e.g., navigate to spell details page)
+                await DisplayAlertAsync("Spell Selected", $"You selected: {selectedSpell.Name}", "OK");
+            }
         }
     }
 }

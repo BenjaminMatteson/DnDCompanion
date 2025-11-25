@@ -33,42 +33,42 @@
                     Clicked="OnBackClicked"
                     HorizontalOptions="Fill" />
 
-			<ListView x:Name="SpellsListView"
-					  SeparatorVisibility="Default"
-					  HasUnevenRows="True">
-				<ListView.ItemTemplate>
+			<CollectionView x:Name="SpellsCollectionView"
+							ItemsLayout="VerticalList"
+							ItemSizingStrategy="MeasureAllItems"
+							SelectionMode="Single"
+							SelectionChanged="OnSpellSelected">
+				<CollectionView.ItemTemplate>
 					<DataTemplate>
-						<ViewCell>
-							<Grid Padding="10" RowSpacing="4">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="Auto"/>
-									<RowDefinition Height="Auto"/>
-									<RowDefinition Height="Auto"/>
-								</Grid.RowDefinitions>
+						<Grid Padding="10" RowSpacing="4">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-								<!-- Name (prominent) -->
-								<Label Grid.Row="0"
-									   Text="{Binding Name}"
-									   FontAttributes="Bold"
-									   FontSize="Medium" />
+							<!-- Name (prominent) -->
+							<Label Grid.Row="0"
+								   Text="{Binding Name}"
+								   FontAttributes="Bold"
+								   FontSize="Medium" />
 
-								<!-- Level -->
-								<Label Grid.Row="1"
-									   Text="{Binding Level, StringFormat='Level {0}'}"
-									   FontSize="Small"
-									   TextColor="#444" />
+							<!-- Level -->
+							<Label Grid.Row="1"
+								   Text="{Binding Level, StringFormat='Level {0}'}"
+								   FontSize="Small"
+								   TextColor="#444" />
 
-								<!-- Url (wrapped/truncated as needed) -->
-								<Label Grid.Row="2"
-									   Text="{Binding Url}"
-									   FontSize="Small"
-									   LineBreakMode="TailTruncation"
-									   TextColor="#0066CC" />
-							</Grid>
-						</ViewCell>
+							<!-- Url (wrapped/truncated as needed) -->
+							<Label Grid.Row="2"
+								   Text="{Binding Url}"
+								   FontSize="Small"
+								   LineBreakMode="TailTruncation"
+								   TextColor="#0066CC" />
+						</Grid>
 					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
 
         </VerticalStackLayout>
     </ScrollView>
