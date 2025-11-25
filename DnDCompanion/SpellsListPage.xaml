@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnDCompanion.SpellsListPage"
+             Title="Spells">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <Label Text="Spells"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   SemanticProperties.HeadingLevel="Level1" />
+
+            <Label Text="This page will list spells. Placeholder content shown below."
+                   FontSize="14" />
+
+            <!-- Placeholder for future CollectionView/List -->
+            <Frame CornerRadius="8" Padding="12" BackgroundColor="{StaticResource SecondaryBackgroundColor}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Fireball" />
+                    <Label Text="Cure Wounds" />
+                    <Label Text="Mage Armor" />
+                    <Label Text="Shield" />
+                </VerticalStackLayout>
+            </Frame>
+
+			<Button Text="Get Spells"
+					Clicked="OnGetSpellsClicked"
+					HorizontalOptions="Fill" />
+
+            <Button Text="Back"
+                    Clicked="OnBackClicked"
+                    HorizontalOptions="Fill" />
+
+			<ListView x:Name="SpellsListView"
+					  SeparatorVisibility="Default"
+					  HasUnevenRows="True">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Grid Padding="10" RowSpacing="4">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<!-- Name (prominent) -->
+								<Label Grid.Row="0"
+									   Text="{Binding Name}"
+									   FontAttributes="Bold"
+									   FontSize="Medium" />
+
+								<!-- Level -->
+								<Label Grid.Row="1"
+									   Text="{Binding Level, StringFormat='Level {0}'}"
+									   FontSize="Small"
+									   TextColor="#444" />
+
+								<!-- Url (wrapped/truncated as needed) -->
+								<Label Grid.Row="2"
+									   Text="{Binding Url}"
+									   FontSize="Small"
+									   LineBreakMode="TailTruncation"
+									   TextColor="#0066CC" />
+							</Grid>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
