@@ -36,7 +36,7 @@ namespace DnDCompanion.Views.Spells
             if (e.CurrentSelection.FirstOrDefault() is Classes.SpellListItem selectedSpell)
             {
                 // Handle spell selection (e.g., navigate to spell details page)
-                await DisplayAlertAsync("Spell Selected", $"You selected: {selectedSpell.Name}", "OK");
+                await Shell.Current.GoToAsync(nameof(SpellsDetailsPage));
             }
         }
     }

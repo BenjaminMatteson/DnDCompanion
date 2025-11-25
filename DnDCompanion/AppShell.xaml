@@ -17,4 +17,9 @@
         ContentTemplate="{DataTemplate spells:SpellsListPage}"
         Route="Views/Spells/SpellsListPage" />
 
+    <ShellContent
+        Title="Spell Details"
+        ContentTemplate="{DataTemplate spells:SpellsDetailsPage}"
+        Route="Views/Spells/SpellsDetailsPage" />
+
 </Shell>

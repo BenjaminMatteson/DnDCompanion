@@ -1,4 +1,6 @@
-﻿namespace DnDCompanion
+﻿using DnDCompanion.Views.Spells;
+
+namespace DnDCompanion
 {
     public partial class MainPage : ContentPage
     {
@@ -23,18 +25,7 @@
 
         private async void OnGoToSpellsClicked(object? sender, EventArgs e)
         {
-            // Register the route to the page path (idempotent)
-            try
-            {
-                Routing.RegisterRoute("Views/Spells/SpellsListPage", typeof(Views.Spells.SpellsListPage));
-            }
-            catch (ArgumentException)
-            {
-                // Route already registered - ignore
-            }
-
-            // Navigate using the registered route (absolute)
-            await Shell.Current.GoToAsync("Views/Spells/SpellsListPage");
+            await Shell.Current.GoToAsync(nameof(SpellsListPage));
         }
     }
 }
