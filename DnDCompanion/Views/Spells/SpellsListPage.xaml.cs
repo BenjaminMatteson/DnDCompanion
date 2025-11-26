@@ -1,3 +1,5 @@
+using DnDCompanion.Helpers;
+
 namespace DnDCompanion.Views.Spells
 {
     public partial class SpellsListPage : ContentPage
@@ -9,19 +11,23 @@ namespace DnDCompanion.Views.Spells
 
         private async void OnGetSpellsClicked(object? sender, EventArgs e)
         {
-            // Create an instance of the API service
-            var apiService = new APIService();
-            try
+            // Ensure sender is a Button and pass a Func<Task> as required by HandleButtonLoading
+            if (sender is Button button)
             {
-                // Fetch the spells list
-                var spells = await apiService.GetSpellsList();
-                // Display the spells in the ListView
-                SpellsCollectionView.ItemsSource = spells;
-            }
-            catch (Exception ex)
-            {
-                // Handle any errors that occur during the API call
-                await DisplayAlertAsync("Error", $"Failed to load spells: {ex.Message}", "OK");
+                await ButtonStateHandler.HandleButtonLoading(button, async () =>
+                {
+                    //TODO: Move APIService instantiation to DI container
+                    var apiService = new APIService();
+                    try
+                    {
+                        var spells = await apiService.GetSpellsList();
+                        SpellsCollectionView.ItemsSource = spells;
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlertAsync("Error", $"Failed to load spells: {ex.Message}", "OK");
+                    }
+                });
             }
         }
 

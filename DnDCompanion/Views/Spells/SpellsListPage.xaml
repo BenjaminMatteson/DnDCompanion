@@ -25,7 +25,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-			<Button Text="Get Spells"
+            <Button Text="Get Spells"
 					Clicked="OnGetSpellsClicked"
 					HorizontalOptions="Fill" />
 
@@ -33,42 +33,42 @@
                     Clicked="OnBackClicked"
                     HorizontalOptions="Fill" />
 
-			<CollectionView x:Name="SpellsCollectionView"
+            <CollectionView x:Name="SpellsCollectionView"
 							ItemsLayout="VerticalList"
 							ItemSizingStrategy="MeasureAllItems"
 							SelectionMode="Single"
 							SelectionChanged="OnSpellSelected">
-				<CollectionView.ItemTemplate>
-					<DataTemplate>
-						<Grid Padding="10" RowSpacing="4">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition Height="Auto"/>
-							</Grid.RowDefinitions>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" RowSpacing="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-							<!-- Name (prominent) -->
-							<Label Grid.Row="0"
+                            <!-- Name (prominent) -->
+                            <Label Grid.Row="0"
 								   Text="{Binding Name}"
 								   FontAttributes="Bold"
 								   FontSize="Medium" />
 
-							<!-- Level -->
-							<Label Grid.Row="1"
+                            <!-- Level -->
+                            <Label Grid.Row="1"
 								   Text="{Binding Level, StringFormat='Level {0}'}"
 								   FontSize="Small"
 								   TextColor="#444" />
 
-							<!-- Url (wrapped/truncated as needed) -->
-							<Label Grid.Row="2"
+                            <!-- Url (wrapped/truncated as needed) -->
+                            <Label Grid.Row="2"
 								   Text="{Binding Url}"
 								   FontSize="Small"
 								   LineBreakMode="TailTruncation"
 								   TextColor="#0066CC" />
-						</Grid>
-					</DataTemplate>
-				</CollectionView.ItemTemplate>
-			</CollectionView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </VerticalStackLayout>
     </ScrollView>

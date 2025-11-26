@@ -18,9 +18,11 @@
                 Margin="0,20,0,0" />
 
             <Button
+                x:Name="SpellsButton"
                 Text="Go to Spells"
                 Clicked="OnGoToSpellsClicked"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill"/>
+
         </VerticalStackLayout>
     </ScrollView>
 
