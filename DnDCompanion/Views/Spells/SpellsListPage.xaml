@@ -1,76 +1,77 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DnDCompanion.Controls"
              x:Class="DnDCompanion.Views.Spells.SpellsListPage"
              Title="Spells">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="20">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="24" Spacing="20">
 
-            <Label Text="Spells"
-                   FontSize="24"
-                   HorizontalOptions="Center"
-                   SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Spells"
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       SemanticProperties.HeadingLevel="Level1" />
 
-            <Label Text="This page will list spells. Placeholder content shown below."
-                   FontSize="14" />
+                <Button Text="Get Spells"
+                        Clicked="OnGetSpellsClicked"
+                        HorizontalOptions="Fill" />
 
-            <!-- Placeholder for future CollectionView/List -->
-            <Frame CornerRadius="8" Padding="12" BackgroundColor="{StaticResource SecondaryBackgroundColor}">
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="Fireball" />
-                    <Label Text="Cure Wounds" />
-                    <Label Text="Mage Armor" />
-                    <Label Text="Shield" />
-                </VerticalStackLayout>
-            </Frame>
+                <Button Text="Back"
+                        Clicked="OnBackClicked"
+                        HorizontalOptions="Fill" />
 
-            <Button Text="Get Spells"
-					Clicked="OnGetSpellsClicked"
-					HorizontalOptions="Fill" />
+                <CollectionView x:Name="SpellsCollectionView"
+                                ItemsLayout="VerticalList"
+                                ItemSizingStrategy="MeasureAllItems"
+                                SelectionMode="Single"
+                                SelectionChanged="OnSpellSelected">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10" RowSpacing="4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-            <Button Text="Back"
-                    Clicked="OnBackClicked"
-                    HorizontalOptions="Fill" />
+                                <!-- Name (prominent) -->
+                                <Label Grid.Row="0"
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium" />
 
-            <CollectionView x:Name="SpellsCollectionView"
-							ItemsLayout="VerticalList"
-							ItemSizingStrategy="MeasureAllItems"
-							SelectionMode="Single"
-							SelectionChanged="OnSpellSelected">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10" RowSpacing="4">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                                <!-- Level -->
+                                <Label Grid.Row="1"
+                                       Text="{Binding Level, StringFormat='Level {0}'}"
+                                       FontSize="Small"
+                                       TextColor="#444" />
 
-                            <!-- Name (prominent) -->
-                            <Label Grid.Row="0"
-								   Text="{Binding Name}"
-								   FontAttributes="Bold"
-								   FontSize="Medium" />
+                                <!-- Url (wrapped/truncated as needed) -->
+                                <Label Grid.Row="2"
+                                       Text="{Binding Url}"
+                                       FontSize="Small"
+                                       LineBreakMode="TailTruncation"
+                                       TextColor="#0066CC" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-                            <!-- Level -->
-                            <Label Grid.Row="1"
-								   Text="{Binding Level, StringFormat='Level {0}'}"
-								   FontSize="Small"
-								   TextColor="#444" />
+            </VerticalStackLayout>
+        </ScrollView>
 
-                            <!-- Url (wrapped/truncated as needed) -->
-                            <Label Grid.Row="2"
-								   Text="{Binding Url}"
-								   FontSize="Small"
-								   LineBreakMode="TailTruncation"
-								   TextColor="#0066CC" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <!-- Some redunancy here with two pop ups. Could be controlled in the VM. -->
+        <!-- Popup overlay: visible when ViewModel.IsGettingSpells is true -->
+        <controls:LoadingPopupView
+            IsVisible="{Binding IsGettingSpells}"
+            Message="Loading spells..." />
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <!-- Popup overlay: visible when ViewModel.IsGettingSpellDetails is true -->
+        <controls:LoadingPopupView
+            IsVisible="{Binding IsGettingSpellDetails}"
+            Message="Loading spell details..." />
+    </Grid>
 
 </ContentPage>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnDCompanion.Controls.LoadingPopupView"
+             x:Name="root"
+             BackgroundColor="Transparent">
+
+    <!-- Overlay fills parent; parent controls visibility via ContentView.IsVisible -->
+    <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+        <Grid BackgroundColor="#80000000" HorizontalOptions="Fill" VerticalOptions="Fill">
+
+            <Frame CornerRadius="12"
+                   Padding="18"
+                   BackgroundColor="{StaticResource SecondaryBackgroundColor}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HasShadow="True"
+                   WidthRequest="260"
+                   HeightRequest="160">
+
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="12">
+                    <Image Source="hourglass.gif"
+                           Aspect="AspectFit"
+                           HeightRequest="64"
+                           WidthRequest="64" 
+                           IsAnimationPlaying="True"/>
+
+                    <!-- Bind Label text to the view's Message BindableProperty -->
+                    <Label Text="{Binding Message, Source={x:Reference root}}"
+                           FontSize="14"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+            </Frame>
+
+        </Grid>
+    </Grid>
+
+</ContentView>

@@ -1,5 +1,6 @@
 ﻿namespace DnDCompanion.Helpers
 {
+    // TODO: leave this class here for now, but current paradigm is just use popups for loading indicators
     public static class ButtonStateHandler
     {
         public static async Task HandleButtonLoading(Button button, Func<Task> operation)
