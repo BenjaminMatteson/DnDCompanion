@@ -43,6 +43,11 @@ namespace DnDCompanion.Views.Spells
             await Shell.Current.GoToAsync("..");
         }
 
+        //TODO: Consider moving navigation logic to a NavigationService
+        //TODO: Move APIService instantiation to DI container
+        //TODO: Move JSON options to a shared location if used elsewhere
+        //TODO: Consider error handling strategy (e.g., logging)
+        //TODO: Consider using a command in the ViewModel instead of code-behind
         private async void OnSpellSelected(object? sender, SelectionChangedEventArgs e)
         {
             try
@@ -50,23 +55,15 @@ namespace DnDCompanion.Views.Spells
                 vm.IsGettingSpellDetails = true;
                 if (e.CurrentSelection.FirstOrDefault() is Classes.SpellListItem selectedSpell)
                 {
-                    // TODO: remove thise delay and implement actual API call to get spell details
-                    // Mimic an API call with a 10 second delay
-                    await Task.Delay(10000);
-
-                    // Handle spell selection (e.g., navigate to spell details page)
-                    await Shell.Current.GoToAsync(nameof(SpellsDetailsPage));
+                    // Navigate and pass index via query string
+                    var route = $"{nameof(SpellsDetailsPage)}?index={Uri.EscapeDataString(selectedSpell.Index)}";
+                    await Shell.Current.GoToAsync(route);
                 }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlertAsync("Error", $"Failed to load spell: {ex.Message}", "OK");
             }
             finally
             {
                 vm.IsGettingSpellDetails = false;
             }
-
         }
     }
 }

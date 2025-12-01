@@ -2,11 +2,84 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DnDCompanion.Views.Spells.SpellsDetailsPage"
+             x:Name="ViewModel"
+             BindingContext="{x:Reference ViewModel}"
              Title="SpellsDetailsPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="{Binding Name}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding Description}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label 
+            Text="{Binding Level}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding Url}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding Range}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding Duration}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding CastingTime}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding Components}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding Material}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding School}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding AttackType}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding DamageType}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding DamageAtHigherLevels}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <CheckBox
+            IsChecked="{Binding IsConcentration}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <CheckBox
+            IsChecked="{Binding IsRitual}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
     </VerticalStackLayout>
 </ContentPage>

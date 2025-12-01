@@ -1,10 +1,6 @@
 ﻿using DnDCompanion.Classes;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
+using DnDCompanion.ViewModels.Spells;
 
 namespace DnDCompanion
 {
@@ -49,6 +45,26 @@ namespace DnDCompanion
             }
 
             return spells;
+        }
+
+        public async Task<SpellDetailsViewModel> GetSpellDetails(string spellIndex, CancellationToken cancellationToken = default)
+        {
+            using var response = await _httpClient.GetAsync($"api/2014/spells/{spellIndex}", cancellationToken).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            var spellDetails = await JsonSerializer.DeserializeAsync<SpellDetails>(stream, options, cancellationToken).ConfigureAwait(false);
+            if (spellDetails == null)
+            {
+                throw new InvalidOperationException($"Failed to deserialize spell details for index: {spellIndex}.");
+            }
+
+            var spellDetailsViewModel = new SpellDetailsViewModel(spellDetails);
+
+            return spellDetailsViewModel;
         }
 
         // Models for the API response
