@@ -1,4 +1,4 @@
-﻿using DnDCompanion.Classes;
+﻿using DnDCompanion.Models;
 using System.ComponentModel;
 
 namespace DnDCompanion.ViewModels.Spells

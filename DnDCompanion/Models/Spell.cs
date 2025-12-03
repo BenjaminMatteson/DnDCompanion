@@ -1,4 +1,4 @@
-﻿namespace DnDCompanion.Classes
+﻿namespace DnDCompanion.Models
 {
     internal sealed class Spell
     {

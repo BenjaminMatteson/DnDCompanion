@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DnDCompanion.Classes
+namespace DnDCompanion.Models
 {
     internal sealed class Damage
     {

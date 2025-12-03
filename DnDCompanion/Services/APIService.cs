@@ -1,10 +1,10 @@
-﻿using DnDCompanion.Classes;
+﻿using DnDCompanion.Models;
 using System.Text.Json;
 using DnDCompanion.ViewModels.Spells;
 
-namespace DnDCompanion
+namespace DnDCompanion.Services
 {
-    internal class APIService
+    internal class APIService : IAPIService
     {
         // Reuse a single HttpClient for the app lifetime
         private static readonly HttpClient _httpClient = new HttpClient
@@ -68,6 +68,6 @@ namespace DnDCompanion
         }
 
         // Models for the API response
-        public sealed record SpellsListResponse(int Count, List<SpellListItem> Results);
+        private sealed record SpellsListResponse(int Count, List<SpellListItem> Results);
     }
 }

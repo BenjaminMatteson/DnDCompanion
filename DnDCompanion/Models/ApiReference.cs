@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace DnDCompanion.Classes
+namespace DnDCompanion.Models
 {
     public class ApiReference
     {

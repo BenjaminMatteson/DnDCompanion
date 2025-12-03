@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DnDCompanion.Classes
+﻿namespace DnDCompanion.Models
 {
-    internal sealed class DamageType
+    internal sealed class School
     {
-        public DamageType() { }
+        public School() { }
         public string Index { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;

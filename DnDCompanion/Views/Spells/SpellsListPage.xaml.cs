@@ -4,36 +4,24 @@ namespace DnDCompanion.Views.Spells
 {
     public partial class SpellsListPage : ContentPage
     {
-        readonly SpellsListViewModel vm;
+        readonly SpellsListViewModel _vm;
 
-        public SpellsListPage()
+        public SpellsListPage(SpellsListViewModel vm)
         {
             InitializeComponent();
-            vm = new SpellsListViewModel();
-            BindingContext = vm;
+            _vm = vm;
+            BindingContext = _vm;
         }
 
         private async void OnGetSpellsClicked(object? sender, EventArgs e)
         {
-            // Ensure sender is a Button and pass a Func<Task> as required by HandleButtonLoading
-            if (sender is Button button)
+            try
             {
-                //TODO: Move APIService instantiation to DI container
-                var apiService = new APIService();
-                try
-                {
-                    vm.IsGettingSpells = true;
-                    var spells = await apiService.GetSpellsList();
-                    SpellsCollectionView.ItemsSource = spells;
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlertAsync("Error", $"Failed to load spells: {ex.Message}", "OK");
-                }
-                finally
-                {
-                    vm.IsGettingSpells = false;
-                }
+                await _vm.GetSpellsAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlertAsync("Error", $"Failed to load spells: {ex.Message}", "OK");
             }
         }
 
@@ -50,20 +38,22 @@ namespace DnDCompanion.Views.Spells
         //TODO: Consider using a command in the ViewModel instead of code-behind
         private async void OnSpellSelected(object? sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                vm.IsGettingSpellDetails = true;
-                if (e.CurrentSelection.FirstOrDefault() is Classes.SpellListItem selectedSpell)
-                {
-                    // Navigate and pass index via query string
-                    var route = $"{nameof(SpellsDetailsPage)}?index={Uri.EscapeDataString(selectedSpell.Index)}";
-                    await Shell.Current.GoToAsync(route);
-                }
-            }
-            finally
-            {
-                vm.IsGettingSpellDetails = false;
-            }
+            return;
+
+            //try
+            //{
+            //    vm.IsGettingSpellDetails = true;
+            //    if (e.CurrentSelection.FirstOrDefault() is Classes.SpellListItem selectedSpell)
+            //    {
+            //        // Navigate and pass index via query string
+            //        var route = $"{nameof(SpellsDetailsPage)}?index={Uri.EscapeDataString(selectedSpell.Index)}";
+            //        await Shell.Current.GoToAsync(route);
+            //    }
+            //}
+            //finally
+            //{
+            //    vm.IsGettingSpellDetails = false;
+            //}
         }
     }
 }

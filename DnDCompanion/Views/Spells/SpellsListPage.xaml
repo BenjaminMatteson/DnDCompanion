@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/design"
+             xmlns:m="clr-namespace:DnDCompanion.Models"
+             xmlns:vm="clr-namespace:DnDCompanion.ViewModels.Spells"
              xmlns:controls="clr-namespace:DnDCompanion.Controls"
              x:Class="DnDCompanion.Views.Spells.SpellsListPage"
+             x:DataType="vm:SpellsListViewModel"
              Title="Spells">
 
     <Grid>
@@ -23,12 +27,14 @@
                         HorizontalOptions="Fill" />
 
                 <CollectionView x:Name="SpellsCollectionView"
+                                ItemsSource="{Binding Spells}"
                                 ItemsLayout="VerticalList"
                                 ItemSizingStrategy="MeasureAllItems"
                                 SelectionMode="Single"
                                 SelectionChanged="OnSpellSelected">
+                    
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="m:SpellListItem">
                             <Grid Padding="10" RowSpacing="4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>

@@ -1,3 +1,5 @@
+using DnDCompanion.Models;
+using DnDCompanion.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -5,26 +7,59 @@ namespace DnDCompanion.ViewModels.Spells
 {
     public class SpellsListViewModel : INotifyPropertyChanged
     {
-        bool isGettingSpells;
+        readonly IAPIService _apiService;
+
+        public SpellsListViewModel(IAPIService apiService) 
+        {
+            _apiService = apiService;
+        } 
+
+        public async Task GetSpellsAsync()
+        {
+            try
+            {
+                IsGettingSpellDetails = true;
+                var spellsResults = await _apiService.GetSpellsList();
+                Spells = spellsResults.ToList();
+            }
+            finally
+            {
+                IsGettingSpellDetails = false;
+            }
+        }
+
+        private bool _isGettingSpells;
         public bool IsGettingSpells
         {
-            get => isGettingSpells;
+            get => _isGettingSpells;
             set
             {
-                if (isGettingSpells == value) return;
-                isGettingSpells = value;
+                if (_isGettingSpells == value) return;
+                _isGettingSpells = value;
                 OnPropertyChanged();
             }
         }
 
-        bool isGettingSpellDetails;
+        private bool _isGettingSpellDetails;
         public bool IsGettingSpellDetails
         {
-            get => isGettingSpellDetails;
+            get => _isGettingSpellDetails;
             set
             {
-                if (isGettingSpellDetails == value) return;
-                isGettingSpellDetails = value;
+                if (_isGettingSpellDetails == value) return;
+                _isGettingSpellDetails = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IList<SpellListItem> _spells = new List<SpellListItem>();
+        public IList<SpellListItem> Spells
+        {
+            get => _spells;
+            set
+            {
+                if (_spells == value) return;
+                _spells = value;
                 OnPropertyChanged();
             }
         }
