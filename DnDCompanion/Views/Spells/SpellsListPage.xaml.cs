@@ -1,3 +1,4 @@
+using DnDCompanion.Models;
 using DnDCompanion.ViewModels.Spells;
 
 namespace DnDCompanion.Views.Spells
@@ -32,28 +33,37 @@ namespace DnDCompanion.Views.Spells
         }
 
         //TODO: Consider moving navigation logic to a NavigationService
-        //TODO: Move APIService instantiation to DI container
         //TODO: Move JSON options to a shared location if used elsewhere
         //TODO: Consider error handling strategy (e.g., logging)
         //TODO: Consider using a command in the ViewModel instead of code-behind
         private async void OnSpellSelected(object? sender, SelectionChangedEventArgs e)
         {
-            return;
+            try
+            {
+                _vm.IsGettingSpellDetails = true;
+                if (e.CurrentSelection.FirstOrDefault() is SpellListItem selectedSpell)
+                {
+                    //TODO: I don't love how this can be null, is this truly the best way?
+                    if (IPlatformApplication.Current == null)
+                    {
+                        await DisplayAlertAsync("Error", "Platform services are not available.", "OK");
+                        return;
+                    }
 
-            //try
-            //{
-            //    vm.IsGettingSpellDetails = true;
-            //    if (e.CurrentSelection.FirstOrDefault() is Classes.SpellListItem selectedSpell)
-            //    {
-            //        // Navigate and pass index via query string
-            //        var route = $"{nameof(SpellsDetailsPage)}?index={Uri.EscapeDataString(selectedSpell.Index)}";
-            //        await Shell.Current.GoToAsync(route);
-            //    }
-            //}
-            //finally
-            //{
-            //    vm.IsGettingSpellDetails = false;
-            //}
+                    var serviceProvider = IPlatformApplication.Current.Services;
+                    var detailsPage = serviceProvider.GetService<SpellDetailsPage>();
+
+                    if (detailsPage != null && detailsPage.BindingContext is SpellDetailsViewModel viewModel)
+                    {
+                        viewModel.Initialize(selectedSpell.Index);
+                        await Shell.Current.Navigation.PushAsync(detailsPage);
+                    }
+                }
+            }
+            finally
+            {
+                _vm.IsGettingSpellDetails = false;
+            }
         }
     }
 }

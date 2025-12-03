@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DnDCompanion.Views.Spells.SpellsDetailsPage"
-             x:Name="ViewModel"
-             BindingContext="{x:Reference ViewModel}"
-             Title="SpellsDetailsPage">
+             xmlns:vm="clr-namespace:DnDCompanion.ViewModels.Spells"
+             x:Class="DnDCompanion.Views.Spells.SpellDetailsPage"
+             x:DataType="vm:SpellDetailsViewModel"
+             Title="SpellDetailsPage">
+    
     <VerticalStackLayout>
         <Label 
             Text="{Binding Name}"

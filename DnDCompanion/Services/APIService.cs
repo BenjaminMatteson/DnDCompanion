@@ -47,7 +47,7 @@ namespace DnDCompanion.Services
             return spells;
         }
 
-        public async Task<SpellDetailsViewModel> GetSpellDetails(string spellIndex, CancellationToken cancellationToken = default)
+        public async Task<SpellDetails> GetSpellDetails(string spellIndex, CancellationToken cancellationToken = default)
         {
             using var response = await _httpClient.GetAsync($"api/2014/spells/{spellIndex}", cancellationToken).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
@@ -56,15 +56,13 @@ namespace DnDCompanion.Services
             {
                 PropertyNameCaseInsensitive = true
             };
-            var spellDetails = await JsonSerializer.DeserializeAsync<SpellDetails>(stream, options, cancellationToken).ConfigureAwait(false);
-            if (spellDetails == null)
+            var spellDetailsResult = await JsonSerializer.DeserializeAsync<SpellDetails>(stream, options, cancellationToken).ConfigureAwait(false);
+            if (spellDetailsResult == null)
             {
                 throw new InvalidOperationException($"Failed to deserialize spell details for index: {spellIndex}.");
             }
 
-            var spellDetailsViewModel = new SpellDetailsViewModel(spellDetails);
-
-            return spellDetailsViewModel;
+            return spellDetailsResult;
         }
 
         // Models for the API response

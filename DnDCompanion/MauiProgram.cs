@@ -20,10 +20,11 @@ namespace DnDCompanion
 
             // Register ViewModels for dependency injection
             builder.Services.AddTransient<ViewModels.Spells.SpellsListViewModel>();
+            builder.Services.AddTransient<ViewModels.Spells.SpellDetailsViewModel>();
 
             // Register Views for dependency injection
             builder.Services.AddTransient<Views.Spells.SpellsListPage>();
-
+            builder.Services.AddTransient<Views.Spells.SpellDetailsPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
