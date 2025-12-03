@@ -69,7 +69,7 @@
 	  <MauiXaml Update="Views\LoadingPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Spells\SpellsDetailsPage.xaml">
+	  <MauiXaml Update="Views\Spells\SpellDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Spells\SpellsListPage.xaml">
@@ -78,8 +78,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\Spells\SpellsDetailsPage.xaml.cs">
-	    <DependentUpon>SpellsDetailsPage.xaml</DependentUpon>
+	  <Compile Update="Views\Spells\SpellDetailsPage.xaml.cs">
+	    <DependentUpon>SpellDetailsPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Spells\SpellsListPage.xaml.cs">
 	    <DependentUpon>SpellsListPage.xaml</DependentUpon>

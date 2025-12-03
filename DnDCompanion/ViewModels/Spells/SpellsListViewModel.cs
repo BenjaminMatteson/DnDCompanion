@@ -9,25 +9,7 @@ namespace DnDCompanion.ViewModels.Spells
     {
         readonly IAPIService _apiService;
 
-        public SpellsListViewModel(IAPIService apiService) 
-        {
-            _apiService = apiService;
-        } 
-
-        public async Task GetSpellsAsync()
-        {
-            try
-            {
-                IsGettingSpellDetails = true;
-                var spellsResults = await _apiService.GetSpellsList();
-                Spells = spellsResults.ToList();
-            }
-            finally
-            {
-                IsGettingSpellDetails = false;
-            }
-        }
-
+        #region Properties
         private bool _isGettingSpells;
         public bool IsGettingSpells
         {
@@ -61,6 +43,26 @@ namespace DnDCompanion.ViewModels.Spells
                 if (_spells == value) return;
                 _spells = value;
                 OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        public SpellsListViewModel(IAPIService apiService) 
+        {
+            _apiService = apiService;
+        } 
+
+        public async Task GetSpellsAsync()
+        {
+            try
+            {
+                IsGettingSpellDetails = true;
+                var spellsResults = await _apiService.GetSpellsList();
+                Spells = spellsResults.ToList();
+            }
+            finally
+            {
+                IsGettingSpellDetails = false;
             }
         }
 

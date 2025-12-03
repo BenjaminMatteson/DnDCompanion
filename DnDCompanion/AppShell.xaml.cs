@@ -8,7 +8,7 @@ namespace DnDCompanion
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(SpellsListPage), typeof(SpellsListPage));
-            Routing.RegisterRoute(nameof(SpellsDetailsPage), typeof(SpellsDetailsPage));
+            Routing.RegisterRoute(nameof(SpellDetailsPage), typeof(SpellDetailsPage));
         }
     }
 }

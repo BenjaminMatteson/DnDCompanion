@@ -19,7 +19,7 @@
 
     <ShellContent
         Title="Spell Details"
-        ContentTemplate="{DataTemplate spells:SpellsDetailsPage}"
-        Route="Views/Spells/SpellsDetailsPage" />
+        ContentTemplate="{DataTemplate spells:SpellDetailsPage}"
+        Route="Views/Spells/SpellDetailsPage" />
 
 </Shell>
