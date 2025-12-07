@@ -18,6 +18,21 @@
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
 
+    <!-- Primary Palette -->
+    <Color x:Key="PrimaryRed">#FFA6312A</Color>
+    <Color x:Key="DeepEmber">#FF7D251F</Color>
+    <Color x:Key="GoldAccent">#FFC29233</Color>
+    <Color x:Key="ParchmentLight">#FFE9D9B6</Color>
+    <Color x:Key="ParchmentDark">#FFCBB68A</Color>
+
+    <!-- Secondary / Utility -->
+    <Color x:Key="InkBlack">#FF1B1B1B</Color>
+    <Color x:Key="Grey">LightGrey</Color>
+    <Color x:Key="IronGrey">#FF4A4A4A</Color>
+    <Color x:Key="ArcaneBlue">#FF2D4F75</Color>
+    <Color x:Key="ForestGreen">#FF4A6B42</Color>
+    <Color x:Key="BloodOrange">#FFB0451B</Color>
+
     <Color x:Key="Gray100">#E1E1E1</Color>
     <Color x:Key="Gray200">#C8C8C8</Color>
     <Color x:Key="Gray300">#ACACAC</Color>

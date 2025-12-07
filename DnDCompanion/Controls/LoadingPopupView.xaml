@@ -11,7 +11,7 @@
 
             <Frame CornerRadius="12"
                    Padding="18"
-                   BackgroundColor="{StaticResource SecondaryBackgroundColor}"
+                   BackgroundColor="{StaticResource ParchmentDark}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HasShadow="True"

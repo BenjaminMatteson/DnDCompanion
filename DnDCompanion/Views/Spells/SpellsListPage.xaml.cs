@@ -33,9 +33,7 @@ namespace DnDCompanion.Views.Spells
         }
 
         //TODO: Consider moving navigation logic to a NavigationService
-        //TODO: Move JSON options to a shared location if used elsewhere
         //TODO: Consider error handling strategy (e.g., logging)
-        //TODO: Consider using a command in the ViewModel instead of code-behind
         private async void OnSpellSelected(object? sender, SelectionChangedEventArgs e)
         {
             try
@@ -43,9 +41,9 @@ namespace DnDCompanion.Views.Spells
                 _vm.IsGettingSpellDetails = true;
                 if (e.CurrentSelection.FirstOrDefault() is SpellListItem selectedSpell)
                 {
-                    //TODO: I don't love how this can be null, is this truly the best way?
                     if (IPlatformApplication.Current == null)
                     {
+                        //TODO: Logging
                         await DisplayAlertAsync("Error", "Platform services are not available.", "OK");
                         return;
                     }
